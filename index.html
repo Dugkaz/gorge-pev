@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gorge PEV — Light-Electric Repair · Columbia River Gorge</title>
+<meta name="description" content="Independent repair for e-bikes, Onewheels, eFoils and electronics in the Columbia River Gorge — including the rides and gear other shops won't touch.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 230 230'%3E%3Ccircle cx='115' cy='115' r='90' fill='%23070E10' stroke='%2384BE3F' stroke-width='8'/%3E%3Cpath d='M28 92c24 0 30-12 54-12s28 24 50 12h16l11-32 16 68 13-36h16' fill='none' stroke='%235193DB' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #0B1410;
+    --bg2:    #111C17;
+    --bg3:    #162019;
+    --panel:  #1C2B22;
+    --foot:   #070E0A;
+    --green:  #7EC832;
+    --glite:  #9EE050;
+    --river:  #4A8FD4;
+    --rlite:  #B8D8F2;
+    --cream:  #EEE9DC;
+    --text:   #B8C9B5;
+    --muted:  #6E8570;
+    --line:   rgba(220,240,210,.10);
+    --line2:  rgba(220,240,210,.20);
+    --disp:   'Space Grotesk', system-ui, sans-serif;
+    --body:   'IBM Plex Sans', system-ui, sans-serif;
+    --mono:   'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--body); color: var(--text); background: var(--bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+
+  .wrap { width: min(1120px, 92vw); margin-inline: auto; }
+  .mono { font-family: var(--mono); letter-spacing: .15em; text-transform: uppercase; font-size: .72rem; }
+
+  /* ── NAV ── */
+  .hdr { position: sticky; top: 0; z-index: 50; background: rgba(7,14,10,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  .hdr .wrap { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-family: var(--disp); font-weight: 700; font-size: 1.24rem; letter-spacing: -.01em; color: var(--cream); }
+  .brand svg { width: 36px; height: 36px; }
+  .brand .pev { color: var(--green); }
+  .nav { display: flex; align-items: center; gap: 28px; }
+  .nav a { font-weight: 500; font-size: .94rem; color: var(--text); transition: color .15s; }
+  .nav a:hover { color: var(--green); }
+  .btn { font-family: var(--disp); font-weight: 600; font-size: .93rem; background: var(--green); color: #0B1410; padding: 10px 20px; border-radius: 8px; border: 1px solid var(--green); transition: .18s; display: inline-block; }
+  .btn:hover { background: var(--glite); border-color: var(--glite); }
+  .btn-outline { background: transparent; color: var(--cream); border-color: var(--line2); }
+  .btn-outline:hover { background: rgba(255,255,255,.05); border-color: var(--green); color: var(--glite); }
+  .menu-btn { display: none; background: none; border: 0; cursor: pointer; width: 42px; height: 42px; color: var(--cream); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    background: url('hero.jpg') 80% 60% / 75% auto no-repeat;
+  }
+  .hero-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(7,14,10,.95) 38%, rgba(7,14,10,.6) 58%, rgba(7,14,10,.1) 80%, rgba(7,14,10,.0) 100%),
+      linear-gradient(to top, rgba(7,14,10,.5) 0%, transparent 30%);
+  }
+  .hero .wrap { position: relative; z-index: 2; padding: 80px 0 100px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .hero-inner { max-width: 560px; }
+  .hero-badge { flex: none; width: min(280px, 36vw); margin-bottom: 80px; filter: drop-shadow(0 0 12px rgba(255,255,255,.55)) drop-shadow(0 8px 24px rgba(0,0,0,.6)); }
+  .hero .eyebrow { color: var(--green); margin-bottom: 22px; display: block; }
+  .hero h1 { font-family: var(--disp); font-weight: 700; font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -.03em; line-height: 1.02; color: var(--cream); margin-bottom: 22px; }
+  .hero h1 em { font-style: normal; color: var(--green); }
+  .hero p.lead { font-size: clamp(1rem, 1.8vw, 1.18rem); color: var(--text); max-width: 50ch; line-height: 1.7; }
+  .hero-cta { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .specstrip { margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--line2); color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 22px; }
+  .specstrip span { font-family: var(--mono); font-size: .7rem; letter-spacing: .14em; }
+
+  /* ── BENCH SPLIT ── */
+  .bench { background: var(--bg2); }
+  .bench-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 480px; }
+  .bench-photo { position: relative; overflow: hidden; min-height: 320px; }
+  .bench-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center left; transition: transform .6s ease; }
+  .bench-photo:hover img { transform: scale(1.03); }
+  .bench-copy { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+  .bench-copy .mono { color: var(--green); margin-bottom: 16px; display: block; }
+  .bench-copy h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(1.7rem, 3.2vw, 2.5rem); letter-spacing: -.02em; line-height: 1.06; color: var(--cream); margin-bottom: 18px; }
+  .bench-copy p { color: var(--text); font-size: 1.05rem; max-width: 42ch; line-height: 1.7; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--bg); }
+  .sec-head { max-width: 56ch; margin-bottom: 48px; }
+  .sec-head .mono { color: var(--green); display: block; margin-bottom: 14px; }
+  .sec-head h2 { font-family: var(--disp); font-weight: 700; letter-spacing: -.02em; line-height: 1.06; font-size: clamp(1.8rem, 3.8vw, 2.8rem); color: var(--cream); }
+  .sec-head p { margin-top: 14px; color: var(--muted); font-size: 1.06rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .card { background: var(--bg2); border: 1px solid var(--line); border-radius: 14px; padding: 28px 26px; transition: border-color .2s, transform .2s; position: relative; overflow: hidden; }
+  .card::after { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 100%; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+  .card:hover { border-color: rgba(126,200,50,.35); transform: translateY(-2px); }
+  .card:hover::after { transform: scaleX(1); }
+  .card .mono { color: var(--river); margin-bottom: 10px; display: block; }
+  .card h3 { font-family: var(--disp); font-weight: 600; font-size: 1.22rem; color: var(--cream); margin-bottom: 10px; letter-spacing: -.01em; }
+  .card p { color: var(--text); font-size: .97rem; line-height: 1.65; }
+  .card .tag { display: inline-block; margin-top: 16px; font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; color: var(--green); background: rgba(126,200,50,.09); border: 1px solid rgba(126,200,50,.25); border-radius: 5px; padding: 4px 9px; }
+
+  /* ── WHY ── */
+  .why { background: var(--bg3); padding: 96px 0; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .why-copy .mono { color: var(--green); display: block; margin-bottom: 14px; }
+  .why-copy h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -.02em; color: var(--cream); line-height: 1.06; margin-bottom: 20px; }
+  .why-copy p { color: var(--text); font-size: 1.06rem; line-height: 1.75; }
+  .why-copy p strong { color: var(--cream); font-weight: 600; }
+  .why-points { display: grid; gap: 2px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .why-points div { padding: 17px 20px; background: var(--panel); display: flex; align-items: center; gap: 13px; font-weight: 500; color: var(--cream); font-size: .97rem; }
+  .why-points div::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--bg2); padding: 96px 0; }
+  .contact-box { max-width: 640px; margin: 0 auto; text-align: center; }
+  .contact-box .mono { color: var(--green); display: block; margin-bottom: 14px; }
+  .contact-box h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--cream); letter-spacing: -.02em; line-height: 1.05; }
+  .contact-box p { margin: 16px auto 28px; color: var(--text); font-size: 1.06rem; max-width: 50ch; line-height: 1.7; }
+  .email-link { display: inline-block; font-family: var(--disp); font-weight: 600; font-size: clamp(1.1rem, 2.5vw, 1.38rem); color: var(--green); border: 1px solid var(--green); border-radius: 10px; padding: 14px 30px; transition: .18s; word-break: break-all; }
+  .email-link:hover { background: var(--green); color: #0B1410; }
+  .es-badge { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; color: var(--river); border: 1px solid var(--river); border-radius: 30px; padding: 6px 15px; }
+
+  /* ── FOOTER ── */
+  .ftr { background: var(--foot); color: var(--muted); padding: 38px 0; }
+  .ftr .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .ftr .brand { color: var(--cream); font-size: 1rem; }
+  .ftr .brand svg { width: 28px; height: 28px; }
+  .ftr small { font-family: var(--mono); letter-spacing: .07em; font-size: .7rem; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .bench-grid { grid-template-columns: 1fr; }
+    .bench-photo { min-height: 280px; }
+    .bench-copy { padding: 44px 32px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 640px) {
+    .nav { position: fixed; inset: 66px 0 auto 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px 0; display: none; }
+    .nav.open { display: flex; }
+    .nav a { padding: 13px 6vw; }
+    .nav .btn { margin: 10px 6vw; }
+    .menu-btn { display: block; }
+    .grid { grid-template-columns: 1fr; }
+    .hero { min-height: 80vh; }
+    .hero-badge { display: none; }
+    .hero-photo { background-position: 70% 30%; }
+    .hero-photo::after { background: linear-gradient(to bottom, rgba(7,14,10,.6) 0%, rgba(7,14,10,.85) 100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .bench-photo img { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="emblem" viewBox="0 0 230 230">
+    <defs>
+      <clipPath id="bclip"><circle cx="115" cy="115" r="90"/></clipPath>
+      <linearGradient id="bsky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#16271D"/><stop offset="1" stop-color="#091310"/>
+      </linearGradient>
+    </defs>
+    <circle cx="115" cy="115" r="90" fill="url(#bsky)" stroke="#7EC832" stroke-width="6"/>
+    <g clip-path="url(#bclip)">
+      <path d="M40 154 L106 64 Q115 52 124 64 L190 154 Z" fill="#41607C"/>
+      <path d="M106 64 Q115 52 124 64 L139 84 L132 92 L141 104 L128 98 L120 112 L112 96 L99 104 L106 90 L98 82 Z" fill="#EDF3FA"/>
+      <path d="M26 160 C52 160 58 150 82 150 S110 168 132 158 L150 158 L161 132 L177 184 L190 158 L208 158" fill="none" stroke="#4A8FD4" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="208" cy="158" r="6.5" fill="#B8D8F2"/>
+      <path d="M22 184 L66 172 L108 182 L150 170 L208 184 L208 212 L22 212 Z" fill="#1C3326"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#emblem"/></svg><span>Gorge <span class="pev">PEV</span></span></a>
+    <nav class="nav" id="nav">
+      <a href="#services">What we fix</a>
+      <a href="#why">Why us</a>
+      <a href="#contact">Contact</a>
+      <a class="btn" href="#contact">Bring it in</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-photo" role="img" aria-label="Doug riding a Onewheel in White Salmon with his dog"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="eyebrow mono">Columbia River Gorge · Independent repair</span>
+        <h1>We fix the rides<br>other shops <em>won't.</em></h1>
+        <p class="lead">E-bikes, Onewheels, eFoils, and everything light-electric — mechanical, electrical, and battery work in the heart of the Gorge. Bought it online? Locked out by the dealer? Bring it in.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#contact">Bring it in</a>
+          <a class="btn btn-outline" href="#services">What we fix</a>
+        </div>
+        <div class="specstrip">
+          <span>E-bikes</span><span>Onewheel</span><span>eFoil</span><span>EUC / Scooters</span><span>Batteries</span><span>Electronics</span>
+        </div>
+      </div>
+      <img class="hero-badge" src="gorge-pev-badge.png" alt="Gorge PEV badge">
+    </div>
+  </section>
+
+  <!-- BENCH SPLIT -->
+  <section class="bench">
+    <div class="bench-grid">
+      <div class="bench-photo">
+        <img src="bench.jpg" alt="Open Onewheel GT showing VESC controller board, Pioneer tire, and custom battery — mid-build on the workbench">
+      </div>
+      <div class="bench-copy reveal">
+        <span class="mono">The work</span>
+        <h2>Board-level repair.<br>Not parts-swapping.</h2>
+        <p>Most shops pull the whole module, drop in a new one, and hand you the bill. This is component-level work — the same bench skills behind restoring vintage electronics, now pointed at your ride. VESC conversions, BMS repair, motor swaps. The hard stuff is the specialty, not the exception.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services" style="padding: 96px 0;">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono">What we fix</span>
+        <h2>If it's light and electric,<br>it belongs on the bench.</h2>
+        <p>Most of this is work other shops outsource, decline, or have never seen. Here it's the specialty.</p>
+      </div>
+      <div class="grid">
+        <div class="card reveal">
+          <span class="mono">E-bikes</span>
+          <h3>E-bike service</h3>
+          <p>Tune-ups, brakes and drivetrains — plus the electrical work most shops avoid: motors, controllers, displays, and wiring. Including the online-bought brands they refuse to touch.</p>
+          <span class="tag">Local + mail-in</span>
+        </div>
+        <div class="card reveal">
+          <span class="mono">Onewheel / PEV</span>
+          <h3>Onewheel &amp; PEV</h3>
+          <p>Board-level controller repair, tires, BMS work, and full VESC conversions. The fixes that usually get a "just buy a new one" from everyone else.</p>
+          <span class="tag">Local + mail-in</span>
+        </div>
+        <div class="card reveal">
+          <span class="mono">eFoil / Electric water</span>
+          <h3>eFoil &amp; foil drives</h3>
+          <p>Waterproofing, ESC and motor service, mast and battery wiring, and the big lithium packs that drive them. Built for a town that lives on the water.</p>
+          <span class="tag">Local + mail-in</span>
+        </div>
+        <div class="card reveal">
+          <span class="mono">Bench electronics</span>
+          <h3>Electronics repair</h3>
+          <p>Component-level board work beyond the ride — controllers, chargers, and vintage stereos brought back from the dead. Decades of solder-level diagnostics.</p>
+          <span class="tag">Local + mail-in</span>
+        </div>
+        <div class="card reveal">
+          <span class="mono">Batteries</span>
+          <h3>Battery service</h3>
+          <p>Diagnostics, BMS repair, and pack rebuilds done right — proper cells, fire-safe handling, no shortcuts. The thing nobody else wants to touch.</p>
+          <span class="tag">Local drop-off only</span>
+        </div>
+        <div class="card reveal">
+          <span class="mono">Builds &amp; mods</span>
+          <h3>Custom builds &amp; mods</h3>
+          <p>VESC builds, big-tire setups, cooling and upgrades — speced, wired, and ridden by someone who builds his own boards.</p>
+          <span class="tag">By appointment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section id="why" class="why">
+    <div class="wrap">
+      <div class="why-grid">
+        <div class="why-copy reveal">
+          <span class="mono">Why Gorge PEV</span>
+          <h2>Run by a builder,<br>not a parts-swapper.</h2>
+          <p>Most shops pull a whole module, drop in a new one, and hand you the bill. <strong>Gorge PEV fixes things at the component level</strong> — the same bench skill behind restoring vintage electronics, now pointed at keeping your ride alive. Onewheel VESC conversions, e-bike electronics, battery packs: the hard stuff is the point, not the exception. And because the work is independent, you own your ride — no dealer lockout, no throwaway culture.</p>
+        </div>
+        <div class="why-points reveal">
+          <div>Component-level board repair</div>
+          <div>Full VESC conversions — XR &amp; GT</div>
+          <div>Honest diagnostics, real fixes</div>
+          <div>Right-to-repair, always</div>
+          <div>Se habla español</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <span class="mono">Contact</span>
+        <h2>Bring it in.</h2>
+        <p>Tell me what it is, what it's doing, and where you bought it — I'll tell you straight whether I can fix it and what it'll take. Serving White Salmon, Hood River, Bingen, and the Columbia River Gorge by appointment, drop-off, and mail-in.</p>
+        <a class="email-link" href="mailto:riverpics@gmail.com">riverpics@gmail.com</a>
+        <div><span class="es-badge">Hablamos español</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#emblem"/></svg><span>Gorge <span style="color:#7EC832">PEV</span></span></a>
+    <small>© 2026 Gorge PEV — Light-Electric Repair · Columbia River Gorge</small>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  var mb = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  mb.addEventListener('click', function() {
+    var open = nav.classList.toggle('open');
+    mb.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      nav.classList.remove('open');
+      mb.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // Scroll reveal
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function(es) {
+      es.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('in'); });
+  }
+</script>
+</body>
+</html>
